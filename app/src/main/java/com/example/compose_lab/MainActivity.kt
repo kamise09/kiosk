@@ -77,7 +77,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val scrollState = rememberScrollState()
-            val MenuName = arrayOf<String>(//메뉴이름 저장
+            val MenuName = arrayOf<String>(//메뉴이름 저장 - 메뉴 리스트
                 "성보고1등 원재 뇌",
                 "원재의 오른팔",
                 "원재의 왼팔",

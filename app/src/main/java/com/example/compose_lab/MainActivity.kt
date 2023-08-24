@@ -1,20 +1,13 @@
 package com.example.compose_lab
 
-import android.media.Image
-import android.nfc.cardemulation.CardEmulation
 import androidx.compose.ui.graphics.Color
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,26 +16,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -53,23 +35,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.Role.Companion.Button
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose_lab.ui.theme.Compose_labTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
-import org.w3c.dom.Text
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,43 +48,28 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val scrollState = rememberScrollState()
-            val MenuName = arrayOf<String>(//메뉴이름 저장 - 메뉴 리스트
-                "성보고1등 원재 뇌",
-                "원재의 오른팔",
-                "원재의 왼팔",
-                "원재의 오른손 중지",
-                "원재의 왼손 약지",
-                "원재의 오른다리",
-                "원재의 왼다리",
-                "원재의 엄지발가락",
-                "원재의 새끼발가락",
-                "원재의 뜨거운 심장"
+            val menuName = arrayOf(//메뉴이름 저장 - 메뉴 리스트
+                "에이드개",
+                "아이스아메리카노",
+                "라떼",
+                "팥빙수",
+                "티라미슈"
             )
-            val MenuCost = arrayOf<Int>(//메뉴 가격 저장
-                25000,
-                35000,
-                40000,
-                50000,
-                75000,
-                45000,
-                12000,
-                13000,
-                24000,
-                54000
+            val menuCost = arrayOf(//메뉴 가격 저장
+                1500,
+                1000,
+                2000,
+                3000,
+                2000
             )
-            val MenuImage = arrayOf<Int>(//메뉴 해당 이미지저장
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae,
-                R.drawable.wonjae
+            val menuImage = arrayOf(//메뉴 해당 이미지저장
+                R.drawable.ade,
+                R.drawable.ade,
+                R.drawable.ade,
+                R.drawable.ade,
+                R.drawable.ade
             )
-            Column(){
+            Column{
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -122,7 +78,7 @@ class MainActivity : ComponentActivity() {
                         .padding(20.dp),
                     contentAlignment = Alignment.TopCenter,
                 ){
-                    Text(text = "Wonjae's Pick",
+                    Text(text = "kiosk",
                         fontSize = 80.sp,
                         fontStyle = FontStyle.Italic,
                         fontFamily = FontFamily.Serif,
@@ -139,10 +95,10 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ){
                     // 메뉴 리스트업 ----------------------------------
-                    for(i in 0..9){
-                        MenuCard(name = MenuName[i],
-                                cost = MenuCost[i],
-                                menuimage = MenuImage[i])
+                    for(i in 0..4){
+                        MenuCard(name = menuName[i],
+                                cost = menuCost[i],
+                                menuimage = menuImage[i])
                         Box(modifier = Modifier.height(20.dp)){}
                     }
                 }
@@ -159,9 +115,7 @@ class MainActivity : ComponentActivity() {
                             .padding(20.dp),
                         contentAlignment = Alignment.CenterEnd,
                     ){
-                        Column(
-
-                        ){
+                        Column{
                             InputNick()
                             Box(modifier = Modifier.height(20.dp)){}
                             Button(
@@ -215,7 +169,6 @@ fun MenuCard(name:String,cost:Int,menuimage:Int){
             modifier = Modifier
                 .fillMaxSize()
                 .padding(20.dp)
-                .background(Color.Magenta)
         ){
             Box(
                 modifier = Modifier
@@ -238,20 +191,17 @@ fun MenuCard(name:String,cost:Int,menuimage:Int){
                     Column(
                         modifier = Modifier
                             .fillMaxHeight()
-                            .background(Color.Cyan),
                     ){
                         Text(text = name,
                             fontSize = 60.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black,
                             modifier = Modifier
-                                .background(Color.Green)
                         )
                         Text(text = "${cost}원",
                             fontSize = 40.sp,
                             color = Color.Black,
                             modifier = Modifier
-                                .background(Color.Green)
                         )
                     }
                 }
